@@ -1,12 +1,17 @@
-const event = require("events");
-const emitter = new event.EventEmitter();
+// const event = require("events");
+// const emitter = new event.EventEmitter();
+import { EventEmitter } from "events";
+const emitter = new EventEmitter();
 
-module.exports = {
-    emitter,
-    events: {
-        RESERVATION_CREATED: "RESERVATION_CREATED",
-        // EVENT_UPDATED: "EVENT_UPDATED",
-        // EVENT_DELETED: "EVENT_DELETED",
-        // TEST_EMITTER: "TEST_EMITTER"
-    }
-};
+// module.exports = {
+//     emitter,
+//     events: {
+//         RESERVATION_CREATED: "RESERVATION_CREATED",
+//     }
+// };
+
+export const events = {
+    RESERVATION_CREATED: "RESERVATION_CREATED",
+}
+
+export { emitter };

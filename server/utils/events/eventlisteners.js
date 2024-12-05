@@ -1,5 +1,8 @@
-const { events, emitter } = require('./eventindex');
-const nodemailer = require('nodemailer');
+// const { events, emitter } = require('./eventindex');
+// const nodemailer = require('nodemailer');
+
+import { events, emitter } from "./eventindex.js";
+import nodemailer from "nodemailer";
 
 
 const transporter = nodemailer.createTransport({
