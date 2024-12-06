@@ -1,5 +1,5 @@
-// const nodemailer = require('nodemailer');
-import nodemailer from "nodemailer";
+const nodemailer = require('nodemailer');
+// import nodemailer from "nodemailer";
 const transporter = nodemailer.createTransport({
     host: "sandbox.smtp.mailtrap.io",
     port: 2525,
@@ -9,5 +9,5 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-// module.exports = { transporter };
-export { transporter };
+module.exports = { transporter };
+// export { transporter };

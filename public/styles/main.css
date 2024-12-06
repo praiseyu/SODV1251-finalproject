@@ -11964,4 +11964,10 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
+}
+#bg-image {
+  background-image: url("../assets/airplane.jpg");
+  background-size: cover;
+  background-position: right;
+  background-repeat: no-repeat;
 }/*# sourceMappingURL=main.css.map */

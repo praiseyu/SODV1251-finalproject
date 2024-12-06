@@ -1,11 +1,51 @@
-import "../../node_modules/bootstrap/dist/js/bootstrap.min.js";
-import "../../node_modules/axios/dist/axios.js";
+// import "../../node_modules/bootstrap/dist/js/bootstrap.min.js";
+// import "../../node_modules/axios/dist/axios.js";
+// const axios = require("axios");
 
 const searchForm = document.getElementById("search-form");
-// input=date return selection
+
 const returnDateField = document.getElementById("returnfield");
 const returnDateInput = document.getElementById("return-date");
+const departureDateInput = document.getElementById("departure-date");
 const radioBtns = document.querySelectorAll('input[name="triptype"]');
+
+// set minimum departure date for today
+const today = new Date().toISOString().split('T')[0];
+document.getElementById("departure-date").setAttribute('min', today);
+document.getElementById("return-date").setAttribute('min', today);
+
+returnDateInput.addEventListener("change", validateReturnDateTest);
+departureDateInput.addEventListener("change", validateReturnDate);
+
+function validateReturnDateTest() {
+    const departureDateInput = document.getElementById("departure-date");
+    const returnDateInput = document.getElementById("return-date");
+
+    // Clear previous validation state (both is-valid and is-invalid)
+    returnDateInput.classList.remove("is-invalid", "is-valid");
+    const invalidFeedback = returnDateInput.nextElementSibling;
+    invalidFeedback.textContent = "Please choose a valid date.";
+
+    // Ensure both dates are provided
+    if (!departureDateInput.value || !returnDateInput.value) {
+        return true; // Skip validation if return date is not required
+    }
+
+    // Convert to Date objects for comparison
+    const departureDate = new Date(departureDateInput.value);
+    const returnDate = new Date(returnDateInput.value);
+
+    // Validate that return date is greater than departure date
+    if (returnDate <= departureDate) {
+        invalidFeedback.textContent = "Return date must be later than the departure date.";
+        returnDateInput.classList.add("is-invalid"); // Add invalid class
+        return false;
+    }
+
+    // Mark as valid if validation passes
+    returnDateInput.classList.add("is-valid"); // Add valid class
+    return true;
+}
 
 
 for (const radioBtn of radioBtns) {
@@ -26,15 +66,54 @@ function toggleTripType(e) {
     }
 }
 
+// function validateFormFields(e) {
+//     if (!e.target.checkValidity()) {
+//         e.preventDefault();
+//         e.stopPropagation();
+//     }
+//     searchForm.classList.add('was-validated');
+// }
+
+function validateReturnDate(e) {
+    const departureDateInput = document.getElementById("departure-date");
+    const returnDateInput = document.getElementById("return-date");
+
+
+    returnDateInput.classList.remove("is-invalid", "is-valid");
+    const invalidFeedback = returnDateInput.nextElementSibling;
+    invalidFeedback.textContent = "Please choose a valid date.";
+    if (!returnDateInput.value || !departureDateInput.value) {
+        return true;
+    }
+    const departureDate = new Date(departureDateInput.value);
+    const returnDate = new Date(returnDateInput.value);
+    console.log(departureDate < returnDate);
+
+    if (returnDate <= departureDate) {
+        invalidFeedback.textContent = "Return date must be later than the departure date.";
+        returnDateInput.classList.add("is-invalid");
+        return false;
+    }
+
+    returnDateInput.classList.add("is-valid");
+    return true;
+
+}
+
 async function handleFlightSearch(e) {
     e.preventDefault();
+    searchForm.classList.add("was-validated");
+    const isValidReturnDate = validateReturnDate(e);
+    if (!searchForm.checkValidity() || !isValidReturnDate) {
+        e.stopPropagation();
+        searchForm.classList.add('was-validated');
+        return;
+    }
+
     const data = new FormData(e.target);
     const dataObject = Object.fromEntries(data.entries());
     console.log(dataObject);
-    for (const key in dataObject) {
-        console.log(key);
-        console.log(dataObject[key]);
-    }
+
     if (!dataObject.returnDate) {
         console.log("no return ticket")
     }
@@ -68,6 +147,29 @@ async function handleFlightSearch(e) {
     // https://serpapi.com/search.json?engine=google_flights&departure_id=YVR&arrival_id=CDG&outbound_date=2024-12-07&currency=CAD&hl=en
     // one way https://serpapi.com/search.json?engine=google_flights&departure_id=YYC&arrival_id=YVR&gl=us&hl=en&currency=USD&type=2&outbound_date=2024-12-03&adults=1
     // https://serpapi.com/search.json?engine=google_flights&departure_id=PEK&arrival_id=AUS&outbound_date=2024-12-04&return_date=2024-12-10&currency=USD&hl=en
+
+    postReservationRequest();
+}
+
+const postReservationRequest = async () => {
+    try {
+        const response = await fetch('http://localhost:8080', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: "test@example.com"
+            })
+        });
+        console.log(response.redirected)
+        if (response.redirected) {
+
+            window.location.href = response.url;
+        }
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 
