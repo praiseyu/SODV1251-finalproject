@@ -7,133 +7,126 @@
     <link rel="stylesheet" href="/styles/main.css" />
     <script src="/bootstrap/js/bootstrap.bundle.min.js" defer></script>
     <script src="/js/main.js" defer></script>
-
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" defer></script>
   </head>
-  <body>
-    <div id="bg-image" class="">
-      <main class="w-100 pt-3 px-4">
-        <div class="d-flex py-3 gap-3">
-          <header class="text-center col-3 pt-5">
-            <h1 class="fs-1">Airline Ticket Reservation</h1>
-          </header>
-          <form
-            class="border border-2 border-black rounded-4 shadow px-5 mx-auto pb-4 needs-validation bg-body-tertiary col-8"
-            novalidate
-            id="search-form"
-          >
-            <h2 class="fs-3 text-center pt-3 pb-2">Search Flights</h2>
-
-            <div class="radio-buttons d-flex justify-content-center gap-5 mt-3">
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="triptype"
-                  id="oneway"
-                  value="oneway"
-                />
-                <label class="form-check-label" for="oneway">One Way</label>
-              </div>
-              <div class="form-check" id="return-radio-field">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="triptype"
-                  value="return"
-                  id="return"
-                  checked
-                />
-                <label class="form-check-label" for="return">Return</label>
-              </div>
-            </div>
-            <div class="location-wrapper d-flex gap-5 justify-content-center">
-              <div class="w-50">
-                <label for="departure-city" class="form-label">Departure</label>
-                <!-- <input
-                      type="text"
-                      class="form-control"
-                      id="departure-city"
-                      value="Calgary (YYC)"
-                      disabled
-                    /> -->
-                <select
-                  class="form-select"
-                  id="departure-city"
-                  name="departureCity"
-                  required
-                >
-                  <option value="" selected disabled>Departure City</option>
-                  <option value="YYC">Calgary (YYC)</option>
-                  <option value="YVR">Vancouver (YVR)</option>
-                  <option value="CDG">Paris (CDG)</option>
-                  <option value="YYZ">Toronto (YYZ)</option>
-                </select>
-                <div class="invalid-feedback">
-                  Please select a departure city.
-                </div>
-              </div>
-              <div class="d-flex flex-column w-50">
-                <label for="arrival-city" class="form-label">Arrival</label>
-                <!-- <input type="text" class="form-control" id="arrival-city" /> -->
-                <select
-                  class="form-select"
-                  id="arrival-city"
-                  name="arrivalCity"
-                  required
-                >
-                  <option selected disabled value="">Where to?</option>
-                  <option value="YVR">Vancouver (YVR)</option>
-                  <option value="CDG">Paris (CDG)</option>
-                  <option value="YYZ">Toronto (YYZ)</option>
-                </select>
-                <div class="invalid-feedback">
-                  Please select an arrival city.
-                </div>
-              </div>
-            </div>
-            <div class="d-flex gap-5 my-3 justify-content-center">
-              <div class="mb-3 flex-grow-1">
-                <label for="departure-date" class="form-label"
-                  >Departure Date</label
-                >
-                <input
-                  type="date"
-                  class="form-control"
-                  name="departureDate"
-                  id="departure-date"
-                  required
-                />
-                <div class="invalid-feedback">
-                  Please choose a departure date.
-                </div>
-              </div>
-              <div class="mb-3 flex-grow-1" id="returnfield">
-                <label for="return-date" class="form-label">Return Date</label>
-                <input
-                  type="date"
-                  class="form-control"
-                  name="returnDate"
-                  id="return-date"
-                  required
-                />
-                <div class="invalid-feedback">
-                  Please choose a valid return date.
-                </div>
-              </div>
-            </div>
-            <div class="text-center">
-              <button class="btn btn-primary" type="submit">
-                Search for Flights
-              </button>
-            </div>
-            <!-- <div class="mb-3" id="emailfield">
-                  <label for="email" class="form-label">Email</label>
-                  <input type="email" class="form-control" id="email" />
-                </div> -->
-          </form>
+  <body class="min-vh-100">
+    <div id="bg-image" class="min-vh-100 position-left">
+      <header class="bg-dark text-white p-3">
+        <div
+          class="container d-flex justify-content-between align-items-center"
+        >
+          <h1 class="m-0">Fly Away</h1>
+          <div class="d-flex gap-4">
+            <p id="user-name" class="text-white align-self-center m-0"></p>
+            <button id="logout-btn" class="btn btn-danger">Logout</button>
+          </div>
         </div>
-        <section>
+      </header>
+      <main class="w-100 pt-3 px-4">
+        <header class="text-center mx-auto py-3">
+          <h1 class="fs-1">Airline Ticket Reservation</h1>
+        </header>
+        <form
+          class="border border-2 border-black rounded-4 shadow px-5 mx-auto pb-4 needs-validation bg-body-tertiary col-8"
+          novalidate
+          id="search-form"
+        >
+          <h2 class="fs-3 text-center pt-3 pb-2">Reserve a Flight</h2>
+
+          <div class="radio-buttons d-flex justify-content-center gap-5 mt-3">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="triptype"
+                id="oneway"
+                value="oneway"
+              />
+              <label class="form-check-label" for="oneway">One Way</label>
+            </div>
+            <div class="form-check" id="return-radio-field">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="triptype"
+                value="return"
+                id="return"
+                checked
+              />
+              <label class="form-check-label" for="return">Return</label>
+            </div>
+          </div>
+          <div class="location-wrapper d-flex gap-5 justify-content-center">
+            <div class="w-50">
+              <label for="departure-city" class="form-label">Departure</label>
+              <select
+                class="form-select"
+                id="departure-city"
+                name="departureCity"
+                required
+              >
+                <option value="" selected disabled>Departure City</option>
+                <option value="YYC">Calgary (YYC)</option>
+                <option value="YVR">Vancouver (YVR)</option>
+                <option value="CDG">Paris (CDG)</option>
+                <option value="YYZ">Toronto (YYZ)</option>
+              </select>
+              <div class="invalid-feedback">
+                Please select a departure city.
+              </div>
+            </div>
+            <div class="d-flex flex-column w-50">
+              <label for="arrival-city" class="form-label">Arrival</label>
+              <select
+                class="form-select"
+                id="arrival-city"
+                name="arrivalCity"
+                required
+              >
+                <option selected disabled value="">Where to?</option>
+                <option value="YVR">Vancouver (YVR)</option>
+                <option value="CDG">Paris (CDG)</option>
+                <option value="YYZ">Toronto (YYZ)</option>
+              </select>
+              <div class="invalid-feedback">Please select an arrival city.</div>
+            </div>
+          </div>
+          <div class="d-flex gap-5 my-3 justify-content-center">
+            <div class="mb-3 flex-grow-1">
+              <label for="departure-date" class="form-label"
+                >Departure Date</label
+              >
+              <input
+                type="date"
+                class="form-control"
+                name="departureDate"
+                id="departure-date"
+                required
+              />
+              <div class="invalid-feedback">
+                Please choose a departure date.
+              </div>
+            </div>
+            <div class="mb-3 flex-grow-1" id="returnfield">
+              <label for="return-date" class="form-label">Return Date</label>
+              <input
+                type="date"
+                class="form-control"
+                name="returnDate"
+                id="return-date"
+                required
+              />
+              <div class="invalid-feedback">
+                Please choose a valid return date.
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <button class="btn btn-primary" type="submit">
+              Reserve My Flight
+            </button>
+          </div>
+        </form>
+        <!-- <section>
           <h2>Flight Options</h2>
           <div id="flight-list" class="list-group">
             <button
@@ -149,9 +142,9 @@
               Second flihgt
             </button>
           </div>
-        </section>
+        </section> -->
       </main>
-      <footer>
+      <footer class="text-center py-4">
         <p>Created 2024.</p>
       </footer>
     </div>

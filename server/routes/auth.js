@@ -38,10 +38,7 @@ router.post('/signup', async (req, res) => {
     const newUser = { email, password: hashedPassword }
     addUser(newUser);
     users = getUsers();
-    console.log(users);
-    console.log(newUser);
     res.status(201).json({ message: 'User registered successfully.' });
-    // res.redirect('/login');
 });
 
 router.post('/login', async (req, res) => {

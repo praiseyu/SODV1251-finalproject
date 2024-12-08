@@ -1,33 +1,53 @@
 require('dotenv').config();
-const cors = require('cors');
 const express = require('express');
 const path = require('path');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
 const app = express();
 const PORT = process.env.PORT || 8080;
-// const CORS_ORIGIN = process.env.CORS_ORIGIN || "http://localhost:5500";
-const authRoutes = require('./routes/auth');
-const routes = require('./routes/routes')
 require('./utils/events/eventlisteners');
 
-// import "./utils/events/eventlisteners.js";
+const passport = require('passport');
+// const LocalStrategy = require('passport-local').Strategy;
+const session = require('express-session');
+const flash = require('connect-flash');
+const authRoutes = require('./routes/authRoutes');
+const protectedRoutes = require('./routes/protectedRoutes');
+const passportConfig = require('./config/passport')
 
-// app.use(cors({ origin: CORS_ORIGIN }));
+
+// const cors = require('cors');
+// const jwt = require('jsonwebtoken');
+// const bcrypt = require('bcryptjs');
+// const CORS_ORIGIN = process.env.CORS_ORIGIN || "http://localhost:5500";
+
+// json webtoken
+// const authRoutes = require('./routes/auth');
+// const routes = require('./routes/routes')
+
+// new update
 
 
 
 
+app.use(session({
+    secret: 'ILOVECHEESE',
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 
-app.use(express.json());
 app.use(
     "/bootstrap",
     express.static(path.join(__dirname, "../node_modules/bootstrap/dist"))
 );
 
 app.use(express.static(path.resolve('..', 'public')));
-app.use('/auth', authRoutes);
-app.use('/', routes);
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use('/', authRoutes);
+
 
 app.listen(PORT, () => {
     console.log(`Server is listening http://localhost:${PORT}`);

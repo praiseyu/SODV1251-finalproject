@@ -1,9 +1,5 @@
-const { events, emitter } = require('./eventindex');
-const nodemailer = require('nodemailer');
-
-// import { events, emitter } from "./eventindex.js";
-// import nodemailer from "nodemailer";
-
+const { events, emitter } = require("./eventindex");
+const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
     host: "sandbox.smtp.mailtrap.io",
@@ -14,14 +10,15 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-emitter.on(events.RESERVATION_CREATED, async (email) => {
+emitter.on(events.RESERVATION_CREATED, async (email, flightDetails) => {
     try {
-
+        console.log("eventlisteneres flight detials")
+        console.log(flightDetails);
         const mailOptions = {
             from: "flightreservation@flights.com",
             to: email,
             subject: `Reservation Confirmation`,
-            text: `Thank you for booking your flight with us. You will receive updates at the email you have provided: ${email}.`
+            text: `Thank you for booking your flight with us.\nYour ${flightDetails.triptype} flight to ${flightDetails.arrivalCity} departs from ${flightDetails.departureCity} on ${flightDetails.departureDate}. ${flightDetails.returnDate ? `Your return flight leaves ${flightDetails.arrivalCity} on ${flightDetails.returnDate}` : ""}`
         }
         await transporter.sendMail(mailOptions);
 
