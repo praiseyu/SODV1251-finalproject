@@ -1,6 +1,51 @@
-// import "../../node_modules/bootstrap/dist/js/bootstrap.min.js";
-// import "../../node_modules/axios/dist/axios.js";
-// const axios = require("axios");
+// document.addEventListener('DOMContentLoaded', async () => {
+//     const token = localStorage.getItem('authToken');
+//     console.log("line 3 main.js", token);
+//     if (token) {
+//         try {
+//             const response = await fetch('/validate', {
+//                 method: 'GET',
+//                 headers: {
+//                     'Authorization': `Bearer ${token}`,
+//                 },
+//             });
+
+//             if (response.ok) {
+//                 console.log('Authenticated');
+//                 window.location.href = '/flights';
+//             } else {
+//                 console.log('Not authenticated or token expired');
+//                 window.location.href = '/signup';  // Redirect to signup page
+//             }
+//         } catch (err) {
+//             console.error('Error fetching protected page:', err);
+//         }
+//     } else {
+//         console.log("25 main.js")
+//         window.location.href = '/signup';
+//     }
+// });
+// console.log("main.js token" + token);
+// if (token) {
+//     try {
+//         const response = await fetch('http://localhost:8080/', {
+//             method: 'GET',
+//             headers: {
+//                 'Authorization': `Bearer ${token}`,
+//             }
+//         });
+//         if (response.ok) {
+//             window.location.href = '/';
+//         } else {
+//             // window.location.href = '/signup';
+//             console.log("else block 19 main.js");
+//         }
+//     } catch (err) {
+//         console.log("err: at line 22 main.js");
+//     }
+// } else {
+//     console.log("error at line 25 main.js")
+// }
 
 const searchForm = document.getElementById("search-form");
 
@@ -8,6 +53,7 @@ const returnDateField = document.getElementById("returnfield");
 const returnDateInput = document.getElementById("return-date");
 const departureDateInput = document.getElementById("departure-date");
 const radioBtns = document.querySelectorAll('input[name="triptype"]');
+
 
 // set minimum departure date for today
 const today = new Date().toISOString().split('T')[0];
@@ -162,7 +208,6 @@ const postReservationRequest = async () => {
                 email: "test@example.com"
             })
         });
-        console.log(response.redirected)
         if (response.redirected) {
 
             window.location.href = response.url;
