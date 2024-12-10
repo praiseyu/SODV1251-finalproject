@@ -12,8 +12,6 @@ const transporter = nodemailer.createTransport({
 
 emitter.on(events.RESERVATION_CREATED, async (email, flightDetails) => {
     try {
-        console.log("eventlisteneres flight detials")
-        console.log(flightDetails);
         const mailOptions = {
             from: "flightreservation@flights.com",
             to: email,
