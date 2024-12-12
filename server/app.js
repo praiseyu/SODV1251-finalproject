@@ -4,13 +4,11 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 8080;
 require('./utils/events/eventlisteners');
-
 const passport = require('passport');
 const session = require('express-session');
 const flash = require('connect-flash');
 const authRoutes = require('./routes/authRoutes');
 require('./config/passport');
-
 
 app.use(session({
     secret: 'ILOVECHEESE',

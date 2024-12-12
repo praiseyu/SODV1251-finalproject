@@ -1,20 +1,5 @@
 [
   {
-    "name": "John Smith",
-    "email": "test@example.com",
-    "password": "222"
-  },
-  {
-    "name": "Jessica Whitman",
-    "email": "user2@example.com",
-    "password": "123"
-  },
-  {
-    "name": "Boo Who",
-    "email": "boo@123.com",
-    "password": "123"
-  },
-  {
     "name": "Mike Wazowski",
     "email": "boo@1.com",
     "password": "123"

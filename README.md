@@ -1,12 +1,16 @@
--- departure is YYC
--- can select airports from a drop down menu
+# Initialization Instructions
 
--- one way or return
---- validat if return date > deprature date
+1. Ensure you are in the final project folder. Type in the terminal window `npm install`.
 
--- reserve button is disabled until all fields are validated
+2. In the terminal, change into server folder by typing: `cd server`.
 
-[] connect to serpAPI / outline data structure
+3. Create your dotenv file using the example.env file. Mailtrap was used for the email functionality.
 
-[] mongodb?
-[] create user authentication pages
+4. Type in `node app.js` to start server. It will be running on port 8080 unless changed in the .env file.
+
+5. In your browser, enter `http://localhost:8080` or `http://localhost:YOURPORT`;
+
+6. Use example to login: `email: alice@alice.com
+password: letmein`.
+
+7. Otherwise you can create an account and the user data will be saved to users.json file in the data folder.

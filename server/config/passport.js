@@ -14,7 +14,6 @@ passport.use(new LocalStrategy({
     async (email, password, done) => {
         const user = users.find(u => u.email === email);
         if (!user) {
-            console.log("User not found");
             return done(null, false, { message: "Incorrect email." });
         }
 
@@ -33,7 +32,6 @@ passport.use(new LocalStrategy({
 ));
 
 passport.serializeUser((user, done) => {
-    // done(null, { email: user.email, name: user.name });
     done(null, user.email);
 });
 
@@ -41,15 +39,5 @@ passport.deserializeUser((email, done) => {
     const user = users.find(u => u.email === email);
     done(null, user);
 });
-
-// function addUser(email, pwd) {
-//     const existingUser = users.some(u => u.email === email);
-//     if (existingUser) {
-//         throw new Error("User already exists.");
-//     }
-//     const newUser = { email, pwd };
-//     users.push(newUser);
-//     fs.writeFileSync(dataPath, JSON.stringify(users, null, 2));
-// }
 
 module.exports = passport;

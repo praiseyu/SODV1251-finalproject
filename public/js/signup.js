@@ -1,8 +1,5 @@
 const signupForm = document.getElementById("signup-form");
-// const loginForm = document.getElementById('login-form');
-
 signupForm.addEventListener('submit', handleSignupSubmit);
-// loginForm.addEventListener('submit', handleLogin);
 
 async function handleSignupSubmit(e) {
     e.preventDefault();
@@ -10,9 +7,7 @@ async function handleSignupSubmit(e) {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById("confirm-password").value;
-
     const userData = { name, email, password, confirmPassword };
-    console.log(userData);
     try {
         const response = await fetch('/signup', {
             method: 'POST',
@@ -25,7 +20,6 @@ async function handleSignupSubmit(e) {
             alert("User succesfully registered. Redirecting to login page.")
             window.location.href = '/login';
         }
-
     } catch (err) {
         console.error('Error during signup:', err);
     }

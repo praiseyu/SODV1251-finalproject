@@ -1,14 +1,5 @@
 const { events, emitter } = require("./eventindex");
-const nodemailer = require("nodemailer");
-
-const transporter = nodemailer.createTransport({
-    host: "sandbox.smtp.mailtrap.io",
-    port: 2525,
-    auth: {
-        user: "0c928b4b63c14d",
-        pass: "e4053b9c2d5a0e",
-    }
-});
+const transporter = require('../transporter/transporterConfig');
 
 emitter.on(events.RESERVATION_CREATED, async (email, flightDetails) => {
     try {

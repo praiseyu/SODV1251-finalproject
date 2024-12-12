@@ -2,9 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const passport = require("../config/passport");
 const { events, emitter } = require("../utils/events/eventindex");
-const ensureAuthenticated = require('../middleware/ensureAuthenticated');
 const bcrypt = require("bcryptjs");
-const { log } = require("console");
 
 const usersFilePath = path.resolve('data', 'users.json');
 
@@ -15,7 +13,6 @@ function getLoginPage(req, res) {
 function postLoginReq(req, res, next) {
     passport.authenticate('local', (err, user, info) => {
         if (err) {
-            console.log(err);
             return next(err);
         }
         if (!user) {
