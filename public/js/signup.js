@@ -6,13 +6,15 @@ signupForm.addEventListener('submit', handleSignupSubmit);
 
 async function handleSignupSubmit(e) {
     e.preventDefault();
+    const name = document.getElementById("name").value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById("confirm-password").value;
 
-    const userData = { email, password };
-
+    const userData = { name, email, password, confirmPassword };
+    console.log(userData);
     try {
-        const response = await fetch('/auth/signup', {
+        const response = await fetch('/signup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

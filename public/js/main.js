@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 function validateReturnDateTest() {
 
-    // reset error states
     returnDateInput.classList.remove("is-invalid", "is-valid");
     const invalidFeedback = returnDateInput.nextElementSibling;
     invalidFeedback.textContent = "Please choose a valid date.";
@@ -96,7 +95,7 @@ function toggleTripType(e) {
 async function handleFlightSearch(e) {
     e.preventDefault();
     searchForm.classList.add("was-validated");
-    const isValidReturnDate = validateReturnDate(e);
+    const isValidReturnDate = validateReturnDateTest(e);
     if (!searchForm.checkValidity() || !isValidReturnDate) {
         e.stopPropagation();
         searchForm.classList.add("was-validated");

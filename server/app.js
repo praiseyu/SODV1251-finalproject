@@ -6,26 +6,10 @@ const PORT = process.env.PORT || 8080;
 require('./utils/events/eventlisteners');
 
 const passport = require('passport');
-// const LocalStrategy = require('passport-local').Strategy;
 const session = require('express-session');
 const flash = require('connect-flash');
 const authRoutes = require('./routes/authRoutes');
-const protectedRoutes = require('./routes/protectedRoutes');
-const passportConfig = require('./config/passport')
-
-
-// const cors = require('cors');
-// const jwt = require('jsonwebtoken');
-// const bcrypt = require('bcryptjs');
-// const CORS_ORIGIN = process.env.CORS_ORIGIN || "http://localhost:5500";
-
-// json webtoken
-// const authRoutes = require('./routes/auth');
-// const routes = require('./routes/routes')
-
-// new update
-
-
+require('./config/passport');
 
 
 app.use(session({
@@ -47,7 +31,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/', authRoutes);
-
 
 app.listen(PORT, () => {
     console.log(`Server is listening http://localhost:${PORT}`);

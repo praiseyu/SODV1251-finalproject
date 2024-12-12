@@ -1,26 +1,37 @@
 [
   {
-    "id": 1,
     "name": "John Smith",
     "email": "test@example.com",
     "password": "222"
   },
   {
-    "id": 2,
     "name": "Jessica Whitman",
     "email": "user2@example.com",
     "password": "123"
   },
   {
-    "id": 3,
     "name": "Boo Who",
     "email": "boo@123.com",
     "password": "123"
   },
   {
-    "id": 4,
     "name": "Mike Wazowski",
     "email": "boo@1.com",
     "password": "123"
+  },
+  {
+    "name": "Cracker",
+    "email": "jack@cracker.com",
+    "password": "123"
+  },
+  {
+    "name": "test",
+    "email": "test@test.com",
+    "password": "$2a$10$UqoFg7BHdKYBMUd5Uw.Qq.FbC1.iiAsbKSXL1QkR4cfjo4s0SrCaS"
+  },
+  {
+    "name": "Alice",
+    "email": "alice@alice.com",
+    "password": "$2a$10$6A1FicM2uldOZ26IZ2pvZeTGAxgVzgJlXIM9bSsui4BGosJx2eyye"
   }
 ]
