@@ -11,7 +11,7 @@ const authRoutes = require('./routes/authRoutes');
 require('./config/passport');
 
 app.use(session({
-    secret: 'ILOVECHEESE',
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false
 }));
